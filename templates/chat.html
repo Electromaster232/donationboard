@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body id="main" class="w3-row">
+
+	</body>
+    <p id="gTotal">Current total: $0</p>
+
+
+
+    <script type="text/javascript">
+
+
+  var socket = io.connect('http://' + document.domain + ':' + location.port);
+  console.log("Connected successfully.");
+  var currTotal = 0;
+  // recieve
+  socket.on('newContestant', function(msg) {
+      console.log("Creating new contestant");
+      $('body').append("<p id=" + msg['contID'] + ">" + msg['contName'] + "</p>")
+      $('#' + msg['contID']).append("<p id=mon" + msg['contID'] + ">$" + msg['totalRaised'] + "</p>")
+      currTotal = parseInt(currTotal) + parseInt(msg['totalRaised']);
+      $('#gTotal').html("<p id='gTotal'>Current total: $" + currTotal + "</p>")
+  });
+
+  socket.on('updateTotal', function(msg) {
+      console.log("Updating totals");
+      $('#mon' + msg['contID']).html("<p id=" + msg['contID'] + ">$" + msg['newAmount'] + "</p>")
+      currTotal = parseInt(currTotal) + parseInt(msg['donatedAmount']);
+      $('#gTotal').html("<p id='gTotal'>Current total: $" + currTotal + "</p>")
+  });
+
+
+</script>
+
+
+
+</html>
