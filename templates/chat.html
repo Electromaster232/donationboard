@@ -1,16 +1,85 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	</head>
-	<body id="main" class="w3-row">
 
-	</body>
-    <p id="gTotal">Current total: $0</p>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Live Donation Board</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
 
+<body>
+    <div id="1">
+        <h1 class="display-4">Contestant NAME 1 <img style="margin-right: -44px;margin-left: 33px;width: 92px;height: 93px;"></h1>
+        <div class="progress" style="width: 1197px;height: 34px;color: rgba(242,242,242,0);background-color: rgba(255,255,255,0);">
+            <div id="1bar" class="progress-bar bg-danger progress-bar-striped progress-bar-animated" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50</div>
+        </div>
+    </div>
+    <div id="2">
+        <h1 class="display-4">Contestant NAME 2<img style="margin-right: -44px;margin-left: 33px;width: 92px;height: 93px;"></h1>
+        <div class="progress" style="width: 1197px;height: 34px;color: rgba(242,242,242,0);background-color: rgba(255,255,255,0);">
+            <div id="2bar" class="progress-bar bg-danger progress-bar-striped progress-bar-animated" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50</div>
+        </div>
+    </div>
+    <div id="3">
+        <h1 class="display-4">Contestant NAME 3<img style="margin-right: -44px;margin-left: 33px;width: 92px;height: 93px;"></h1>
+        <div class="progress" style="width: 1197px;height: 34px;color: rgba(242,242,242,0);background-color: rgba(255,255,255,0);">
+            <div id="3bar" class="progress-bar bg-danger progress-bar-striped progress-bar-animated" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50</div>
+        </div>
+    </div>
+    <div id="4">
+        <h1 class="display-4">Contestant NAME 4<img style="margin-right: -44px;margin-left: 33px;width: 92px;height: 93px;"></h1>
+        <div class="progress" style="width: 1197px;height: 34px;color: rgba(242,242,242,0);background-color: rgba(255,255,255,0);">
+            <div id="4bar" class="progress-bar bg-danger progress-bar-striped progress-bar-animated" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50</div>
+        </div>
+    </div>
+    <div id="5">
+        <h1 class="display-4">Contestant NAME 5<img style="margin-right: -44px;margin-left: 33px;width: 92px;height: 93px;"></h1>
+        <div class="progress" style="width: 1197px;height: 34px;color: rgba(242,242,242,0);background-color: rgba(255,255,255,0);">
+            <div id="5bar" class="progress-bar bg-danger progress-bar-striped progress-bar-animated" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50</div>
+        </div>
+    </div>
+    <div id="6">
+        <h1 class="display-4">Contestant NAME 6<img style="margin-right: -44px;margin-left: 33px;width: 92px;height: 93px;"></h1>
+        <div class="progress" style="width: 1197px;height: 34px;color: rgba(242,242,242,0);background-color: rgba(255,255,255,0);">
+            <div id="6bar" class="progress-bar bg-danger progress-bar-striped progress-bar-animated" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50</div>
+        </div>
+    </div>
+    <div id="7">
+        <h1 class="display-4">Contestant NAME 7<img style="margin-right: -44px;margin-left: 33px;width: 92px;height: 93px;"></h1>
+        <div class="progress" style="width: 1197px;height: 34px;color: rgba(242,242,242,0);background-color: rgba(255,255,255,0);">
+            <div id="7bar" class="progress-bar bg-danger progress-bar-striped progress-bar-animated" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50</div>
+        </div>
+    </div>
+    <div id="8">
+        <h1 class="display-4">Contestant NAME 8<img style="margin-right: -44px;margin-left: 33px;width: 92px;height: 93px;"></h1>
+        <div class="progress" style="width: 1197px;height: 34px;color: rgba(242,242,242,0);background-color: rgba(255,255,255,0);">
+            <div id="8bar" class="progress-bar bg-danger progress-bar-striped progress-bar-animated" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50</div>
+        </div>
+    </div>
+    <div id="9">
+        <h1 class="display-4">Contestant NAME 9<img style="margin-right: -44px;margin-left: 33px;width: 92px;height: 93px;"></h1>
+        <div class="progress" style="width: 1197px;height: 34px;color: rgba(242,242,242,0);background-color: rgba(255,255,255,0);">
+            <div id="9bar" class="progress-bar bg-danger progress-bar-striped progress-bar-animated" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50</div>
+        </div>
+    </div>
+    <div id="10">
+        <h1 class="display-4">Contestant NAME 10<img style="margin-right: -44px;margin-left: 33px;width: 92px;height: 93px;"></h1>
+        <div class="progress" style="width: 1197px;height: 34px;color: rgba(242,242,242,0);background-color: rgba(255,255,255,0);">
+            <div id="10bar" class="progress-bar bg-danger progress-bar-striped progress-bar-animated" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50</div>
+        </div>
+    </div>
+
+
+    <h1 id="gTotal" class="text-center">Amount Raised Tonight: $xxx</h1>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
 
 
     <script type="text/javascript">
@@ -19,21 +88,42 @@
   var socket = io.connect('http://' + document.domain + ':' + location.port);
   console.log("Connected successfully.");
   var currTotal = 0;
-  // recieve
-  socket.on('newContestant', function(msg) {
-      console.log("Creating new contestant");
-      $('body').append("<p id=" + msg['contID'] + ">" + msg['contName'] + "</p>")
-      $('#' + msg['contID']).append("<p id=mon" + msg['contID'] + ">$" + msg['totalRaised'] + "</p>")
-      currTotal = parseInt(currTotal) + parseInt(msg['totalRaised']);
-      $('#gTotal').html("<p id='gTotal'>Current total: $" + currTotal + "</p>")
-  });
 
   socket.on('updateTotal', function(msg) {
       console.log("Updating totals");
-      $('#mon' + msg['contID']).html("<p id=" + msg['contID'] + ">$" + msg['newAmount'] + "</p>")
+      $('#' + msg['contID'] + 'bar').text(msg['newAmount']);
       currTotal = parseInt(currTotal) + parseInt(msg['donatedAmount']);
-      $('#gTotal').html("<p id='gTotal'>Current total: $" + currTotal + "</p>")
+      $('#gTotal').html("<p id='gTotal'>Amount Raised Tonight: $" + currTotal + "</p>");
+      let oofarray = [$('#1bar'), $('#2bar'), $('#3bar'), $('#4bar'), $('#5bar'), $('#6bar'), $('#7bar'), $('#8bar'), $('#9bar'), $('#10bar')];
+      var bottomValues = oofarray.sort((a,b) => a-b).slice(0,5);
+      var topValues = oofarray.sort((a,b) => b-a).slice(0,5);
+      let topbar = oofarray.sort((a,b) => b-a).slice(0,0);
+      for(x of topbar) {
+          topbar.attr("aria-valuenow", "100");
+      }
+      for(x of bottomValues){
+          x.parent().parent().attr("style", "display: none !important");
+      }
+      let index = 1;
+      for(x of topValues){
+          if(x !== topbar){
+              x.attr("aria-valuenow", (x.text() / currTotal));
+          }
+          x.parent().parent().attr("style", "display: absolute");
+          index++;
+      }
+
+
+
+
+
   });
+   socket.on("updatePlace", function(msg){
+       console.log(msg['place']);
+       console.log("I should be moving" + msg['contID'] + "to place" + msg['place']);
+       console.log("bruh");
+          $("#" + msg['contID']).before($("#" + msg['place']));
+      });
 
 
 </script>

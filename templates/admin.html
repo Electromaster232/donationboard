@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<meta name="theme-color" content="#961acc">
+<title>ClapRaise - In-Page Embed</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="/static/styles/home.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<script src="/static/nav.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.bigText,.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+<body id="body">
+<script>
+   $(document).ready(function() {
+    height1 = $(window).height() * 0.5; //adjust these numbers yourself (0.6 and 0.4)
+    height2 = $(window).height() * 0.5;
+    $("#elementOne").css("height", `${height1}`);
+    $("#elementTwo").css("height", `${height2}`);
+});
+</script>
+
+<div class="w3-top">
+<div class="w3-bar w3-black w3-card w3-left-align w3-large">
+<a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white fa fa-thumbs-o-up custom-font-size"> ClapRaise! Live Board Admin</a>
+
+</select>
+<a href="#" class="w3-button w3-bar-item w3-padding-large w3-right" style="padding-left: 300px">Welcome, Live Board Administrator</a>
+</div>
+</div>
+
+<div id="home" class="w3-row-padding w3-padding-64 w3-container" id="elementOne">
+<div class="w3-content">
+<div class="w3-twothird">
+<h1>Donation Management Dashboard</h1>
+<h5 class="w3-padding-16">Enter donations below:</h5>
+</div>
+<br />
+    <form id="newEmailForm" class="newEmailForm">
+<input type="text" name="amount" id="amount" placeholder="Amount Donated">
+        <select id="contID"></select>
+<input type="submit" value="Submit" id="submit">
+</form><div class="w3-center w3-third custom-icon-150">
+<i class="fa fa-check w3-text-gray"></i>
+</div>
+</div>
+</div>
+
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">
+<div class="w3-padding-32">
+<p style="color: #A9A9A9">ClapRaise v1.1 | Designed by Adam Gilbert.</p>
+</div>
+</footer>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

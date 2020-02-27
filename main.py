@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect, render_template, make_response, session, send_from_directory
 from flask_socketio import SocketIO
-import MySQLdb
+import mysql.connector
 import random
 import time
 from passlib.context import CryptContext
@@ -18,29 +18,48 @@ def home():
     return render_template("index.html")
 
 
+@socketio.on("connect")
+def onConnect():
+    all = query("SELECT * FROM contestants ORDER BY totalraised ASC", [])
+    index = 1
+    for x in all:
+        json2 = {}
+        print(x[0])
+        json2['contID'] = x[0]
+        json2['place'] = index
+        socketio.emit("updatePlace", json2)
+        index = index + 1
+        json = {}
+         # json['contName'] = request.form['contName']
+        json['contID'] = x[0]
+        json['newAmount'] = x[2]
+        json['donatedAmount'] = x[2]
+        socketio.emit("updateTotal", json)
+
 @app.route("/board")
 def board():
     return render_template("chat.html")
 
-
-@socketio.on("connect")
-def clientConn():
-    res = query("SELECT * FROM contestants", [])
-    for r in res:
-        json2 = {}
-        json2['contID'] = r[0]
-        json2['contName'] = r[1]
-        json2['totalRaised'] = r[2]
-        socketio.emit("newContestant", json2)
-    return ""
+@app.route("/admin")
+def admin():
+    return render_template("admin.html")
 
 
 @app.route("/adddonation", methods=['GET', 'POST'])
 def addDonation():
-    res = query("SELECT * FROM contestants WHERE id = %s", request.form['contID'])
-    query("INSERT INTO donations (donateTo, amount, notes) VALUES (%s,%s,%s)", [request.form['contID'], request.form['amount'], request.form['notes']])
+    res = query("SELECT * FROM contestants WHERE id = %s", [request.form['contID']])
+    query("INSERT INTO donations (donateTo, amount, notes) VALUES (%s,%s,%s)", [request.form['contID'], request.form['amount'], "None"])
     newTotal = int(res[0][2]) + int(request.form['amount'])
     query("UPDATE contestants SET totalraised = %s WHERE id = %s", [newTotal, request.form['contID']])
+    all = query("SELECT * FROM contestants ORDER BY totalraised ASC", [])
+    index = 1
+    for x in all:
+        json2 = {}
+        print(x[0])
+        json2['contID'] = x[0]
+        json2['place'] = index
+        socketio.emit("updatePlace", json2)
+        index = index + 1
     json = {}
     #json['contName'] = request.form['contName']
     json['contID'] = request.form['contID']
@@ -53,11 +72,15 @@ def addDonation():
 # Misc Functions
 
 def query(query, values):
-    conn.ping(True)
-    cur = conn.cursor()
+    cnx.ping(True)
+    cur = cnx.cursor()
     cur.execute(query, values)
-    conn.commit()
-    return cur.fetchall()
+    try:
+        res = cur.fetchall()
+    except mysql.connector.errors.InterfaceError:
+        cnx.commit()
+        return
+    return res
 
 
 def convertSQLDateTimeToTimestamp(value):
@@ -73,7 +96,7 @@ def check_encrypted_password(password, hashed):
 
 
 if __name__ == '__main__':
-    conn = MySQLdb.connect(host=Config.host,  # your host, usually localhost
+    cnx = mysql.connector.connect(host=Config.host,  # your host, usually localhost
                          user=Config.user,  # your username
                          passwd=Config.passwd,  # your password
                          db=Config.db)
