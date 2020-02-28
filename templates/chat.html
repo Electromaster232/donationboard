@@ -97,22 +97,23 @@
       let oofarray = [$('#1bar'), $('#2bar'), $('#3bar'), $('#4bar'), $('#5bar'), $('#6bar'), $('#7bar'), $('#8bar'), $('#9bar'), $('#10bar')];
       var bottomValues = oofarray.sort((a,b) => a-b).slice(0,5);
       var topValues = oofarray.sort((a,b) => b-a).slice(0,5);
-      let topbar = oofarray.sort((a,b) => b-a).slice(0,0);
-      for(x of topbar) {
-          topbar.attr("aria-valuenow", "100");
-      }
+      let topbar = oofarray.sort((a,b) => b-a).slice(0,1);
+
       for(x of bottomValues){
           x.parent().parent().attr("style", "display: none !important");
       }
       let index = 1;
       for(x of topValues){
-          if(x !== topbar){
-              x.attr("aria-valuenow", (x.text() / currTotal));
+          if(!(topbar.includes(x))){
+              console.log("updating" + x.text());
+              x.attr("style", "width: " + ((x.text() / currTotal) * 100) + "%");
           }
           x.parent().parent().attr("style", "display: absolute");
           index++;
       }
-
+      for(x of topbar) {
+          x.attr("style", "width: 100%");
+      }
 
 
 
